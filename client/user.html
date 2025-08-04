@@ -1,0 +1,12 @@
+<h2>User Dashboard</h2>
+<p>Welcome, <span id="userName">User</span>!</p>
+<button onclick="logout()">Logout</button>
+
+<script>
+  function logout() {
+    window.location.href = '/';
+  }
+
+  // You can also use localStorage or sessionStorage to show username
+  document.getElementById('userName').textContent = localStorage.getItem('fullName') || 'User';
+</script>

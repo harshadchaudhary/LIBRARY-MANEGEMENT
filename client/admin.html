@@ -1,0 +1,27 @@
+<h2>Admin Dashboard</h2>
+<ul id="userList"></ul>
+<button onclick="logout()">Logout</button>
+
+<script>
+  function logout() {
+    window.location.href = '/';
+  }
+
+  // Simulate list of users (you'll later fetch from backend)
+  const users = [
+    { fullName: "Harshad Chaudhary", email: "harshad@gmail.com" },
+    { fullName: "Admin", email: "admin@gmail.com" }
+  ];
+
+  const list = document.getElementById('userList');
+  users.forEach(u => {
+    const li = document.createElement('li');
+    li.textContent = `${u.fullName} - ${u.email}`;
+    list.appendChild(li);
+  });
+
+  if (localStorage.getItem('role') !== 'Admin') {
+    alert('Access denied');
+    window.location.href = '/';
+  }
+</script>

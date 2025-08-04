@@ -1,0 +1,52 @@
+<!-- client/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+</head>
+<body>
+  <h2>Login Page</h2>
+  <form id="loginForm">
+<p>Don't have an account? <a href="register.html">Register here</a></p>
+
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <select id="role" required>
+      <option value="">Select Role</option>
+      <option value="User">User</option>
+      <option value="Admin">Admin</option>
+    </select>
+    <button type="submit">Login</button>
+  </form>
+
+  <script src="login.js">
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const role = document.getElementById('role').value;
+
+      fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, role })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'Login successful') {
+          if (data.role === 'User') {
+            window.location.href = '/user.html';
+          } else if (data.role === 'Admin') {
+            window.location.href = '/admin.html';
+          }
+        } else {
+          alert(data.message);
+        }
+      });
+    });
+    
+  </script>
+</body>
+</html>
