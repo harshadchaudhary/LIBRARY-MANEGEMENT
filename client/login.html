@@ -1,52 +1,50 @@
-<!-- client/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>Login Page</h2>
-  <form id="loginForm">
-<p>Don't have an account? <a href="register.html">Register here</a></p>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="logo.png" alt="Library Logo" style="height: 50px; margin-right: 15px;" />
+      <h1>Library Login</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
 
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <select id="role" required>
-      <option value="">Select Role</option>
-      <option value="User">User</option>
-      <option value="Admin">Admin</option>
-    </select>
-    <button type="submit">Login</button>
-  </form>
+  <main>
+    <form id="loginForm">
+      <h2>Login</h2>
 
-  <script src="login.js">
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const role = document.getElementById('role').value;
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Email" required />
 
-      fetch('/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, role })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === 'Login successful') {
-          if (data.role === 'User') {
-            window.location.href = '/user.html';
-          } else if (data.role === 'Admin') {
-            window.location.href = '/admin.html';
-          }
-        } else {
-          alert(data.message);
-        }
-      });
-    });
-    
-  </script>
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Password" required />
+
+      <label for="role">Role</label>
+      <select id="role" required>
+        <option value="" disabled selected>Select Role</option>
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+      </select>
+
+      <button type="submit">Login</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Library Portal | All rights reserved</p>
+  </footer>
+
+  <!-- ✅ External JS -->
+  <script src="login.js"></script>
 </body>
 </html>

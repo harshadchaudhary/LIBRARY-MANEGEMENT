@@ -1,9 +1,9 @@
-// client/login.js
-document.getElementById('loginForm').addEventListener('submit', function (e) {
+document.getElementById('loginForm').addEventListener('submit', function (e)
+ {
   e.preventDefault();
-  
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
   const role = document.getElementById('role').value;
 
   fetch('/login', {
@@ -13,18 +13,24 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
   })
   .then(res => res.json())
   .then(data => {
-    if (data.message === 'Login successful') {
-      if (data.role === 'User') {
-        window.location.href = '/user.html';
-      } else if (data.role === 'Admin') {
-        window.location.href = '/admin.html';
+    if (data.success) {
+      // Store login session data
+      localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+
+      // Redirect to the respective dashboard
+      if (data.user.role === 'Admin') {
+        window.location.href = 'admin-dashboard.html';
+      } else if (data.user.role === 'User') {
+        window.location.href = 'user-dashboard.html';
+      } else {
+        alert('Unknown role');
       }
     } else {
-      alert(data.message);
+      alert(data.message || 'Login failed');
     }
   })
   .catch(error => {
-    console.error('Login failed:', error);
+    console.error('Login error:', error);
     alert('Something went wrong. Try again.');
   });
 });

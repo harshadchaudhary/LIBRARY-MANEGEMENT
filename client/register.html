@@ -1,22 +1,39 @@
+<!-- client/register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>Register</h2>
-  <form id="registerForm">
-    <input type="text" id="fullName" placeholder="Full Name" required /><br>
-    <input type="email" id="email" placeholder="Email" required /><br>
-    <input type="password" id="password" placeholder="Password" required /><br>
-    <select id="role" required>
-      <option value="">Select Role</option>
-      <option value="User">User</option>
-      <option value="Admin">Admin</option>
-    </select><br>
-    <button type="submit">Register</button>
-  </form>
+  <header>
+    <h1>📚 Mumbai Library Management</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="form-container">
+    <h2>Register</h2>
+    <form id="registerForm" class="form">
+      <input type="text" id="fullName" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <select id="role" required>
+        <option value="">Select Role</option>
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+      </select>
+      <button type="submit">Register</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Library Management</p>
+  </footer>
 
   <script>
     document.getElementById('registerForm').addEventListener('submit', function (e) {
@@ -35,6 +52,9 @@
       .then(res => res.json())
       .then(data => {
         alert(data.message);
+        if (data.message === 'Registration successful') {
+          window.location.href = 'login.html';
+        }
       })
       .catch(err => {
         alert('Something went wrong: ' + err.message);

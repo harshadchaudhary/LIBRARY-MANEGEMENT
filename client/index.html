@@ -4,12 +4,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Library Management</title>
+  <title>Mumbai Library Portal</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    header, main, footer {
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s ease, background 0.3s ease;
+      border: 1px solid #ffffff30;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .highlight {
+      color: #ffd700;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>📚 Mumbai Library Management</h1>
+    <h1>📚 Mumbai Library Management Portal</h1>
     <nav>
       <a href="login.html">Login</a>
       <a href="register.html">Register</a>
@@ -17,12 +84,27 @@
   </header>
 
   <main>
-    <h2>Welcome to Mumbai's Public Library Portal</h2>
-    <p>Search and manage books from any library around Mumbai.</p>
+    <h2>Welcome to Mumbai’s Public Library</h2>
+    <p>Access books, manage records, and connect to libraries across Mumbai</p>
   </main>
 
+  <section class="features">
+    <a href="explore-books.html" class="card">
+      <h3>📖 <span class="highlight">Explore Books</span></h3>
+      <p>Search thousands of books from multiple public libraries in Mumbai.</p>
+    </a>
+    <a href="secure-access.html" class="card">
+      <h3>🔐 <span class="highlight">Secure Access</span></h3>
+      <p>Login as User or Admin to access and manage the library system securely.</p>
+    </a>
+    <a href="digital-library.html" class="card">
+      <h3>📚 <span class="highlight">Digital Library</span></h3>
+      <p>Read and issue books digitally without visiting physically.</p>
+    </a>
+  </section>
+
   <footer>
-    <p>&copy; 2025 Library Management</p>
+    <p>&copy; 2025 Mumbai Library Management | Developed by Harshad Chaudhary</p>
   </footer>
 </body>
 </html>
